@@ -1,0 +1,11 @@
+mango_pi_01\mqttformat.o: ..\PROTOCOL\MQTTPacket\MQTTFormat.c
+mango_pi_01\mqttformat.o: ..\PROTOCOL\MQTTPacket\StackTrace.h
+mango_pi_01\mqttformat.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+mango_pi_01\mqttformat.o: ..\PROTOCOL\MQTTPacket\MQTTPacket.h
+mango_pi_01\mqttformat.o: ..\PROTOCOL\MQTTPacket\MQTTConnect.h
+mango_pi_01\mqttformat.o: ..\PROTOCOL\MQTTPacket\MQTTPublish.h
+mango_pi_01\mqttformat.o: ..\PROTOCOL\MQTTPacket\MQTTSubscribe.h
+mango_pi_01\mqttformat.o: ..\PROTOCOL\MQTTPacket\MQTTUnsubscribe.h
+mango_pi_01\mqttformat.o: ..\PROTOCOL\MQTTPacket\MQTTFormat.h
+mango_pi_01\mqttformat.o: ..\PROTOCOL\MQTTPacket\MQTTPacket.h
+mango_pi_01\mqttformat.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

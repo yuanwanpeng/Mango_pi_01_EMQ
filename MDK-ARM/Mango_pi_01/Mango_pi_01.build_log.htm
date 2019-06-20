@@ -1,0 +1,75 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.28.0.0
+Copyright (C) 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: yuan Microsoft, Microsoft, LIC=8VRDY-I5GRJ-73JM8-393IY-Q16V3-7RPME
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.28.0.0
+Toolchain Path:  d:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 6 (build 750)
+Assembler:       Armasm.exe V5.06 update 6 (build 750)
+Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
+Library Manager: ArmAr.exe V5.06 update 6 (build 750)
+Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
+CPU DLL:         SARMCM3.DLL V5.28.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.6.0
+Dialog DLL:      TCM.DLL V1.36.2.0
+ 
+<h2>Project:</h2>
+E:\git\Mango_pi_01_EMQ\MDK-ARM\Mango_pi_01.uvprojx
+Project File Date:  06/20/2019
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'd:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'Mango_pi_01'
+compiling Mqtt.c...
+..\PROTOCOL\Mqtt.c(162): warning:  #940-D: missing return statement at end of non-void function "Connect_Server" 
+  }
+..\PROTOCOL\Mqtt.c(169): warning:  #177-D: variable "str"  was declared but never referenced
+  	char* str;
+..\PROTOCOL\Mqtt.c(190): error:  #20: identifier "IOT_Buf" is undefined
+  	len = MQTTSerialize_connect(IOT_Buf, Size, &ConnectData);
+..\PROTOCOL\Mqtt.c(190): error:  #20: identifier "Size" is undefined
+  	len = MQTTSerialize_connect(IOT_Buf, Size, &ConnectData);
+..\PROTOCOL\Mqtt.c(192): error:  #20: identifier "ACK" is undefined
+  	if (transport_sendPacketBuffer(IOT_Buf,len,ACK))
+..\PROTOCOL\Mqtt.c(192): error:  #167: argument of type "int" is incompatible with parameter of type "unsigned char *"
+  	if (transport_sendPacketBuffer(IOT_Buf,len,ACK))
+..\PROTOCOL\Mqtt.c(194): error:  #20: identifier "p_GPRS" is undefined
+  		p_GPRS->DOWN_LEN = 0x0000;
+..\PROTOCOL\Mqtt.c(206): warning:  #1-D: last line of file ends without a newline
+  }
+..\PROTOCOL\Mqtt.c: 3 warnings, 5 errors
+"Mango_pi_01\Mango_pi_01.axf" - 5 Error(s), 3 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.5.1.pack
+                ARM.CMSIS.5.5.1
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.2.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F1xx_DFP.2.3.0.pack
+                Keil.STM32F1xx_DFP.2.3.0
+                STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_Mango_pi_01
+  c:\Users\Administrator\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include
+  c:\Users\Administrator\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.2.0
+Target not created.
+Build Time Elapsed:  00:00:03
+</pre>
+</body>
+</html>

@@ -5,16 +5,22 @@
  *      Author: Administrator
  */
 #include "Mqtt.h"
+#include "MQTTPacket.h"
 #include "main.h"
 #include "GPRS.h"
+#include "transport.h"
 #include "SIM800C_Scheduler_data.h"
 #define DEVICE_ID 	"518898092"
 #define PRODUCT_ID 	"217490"
 #define API_KEY		"eC8obJLJaS2PEA0SSrF3gcGbDQ8="
+#define	Size							1024
+
 extern uint8_t pData[];
 Connect_Pack G_Connect_Pack;
 Onenet_Pack G_Send_Pack;
 uint8_t g_send_Onenet_buf[1024];
+
+uint8_t 					IOT_Buf[Size];
 extern float temp;
 extern osThreadId Start_Reset_Sim800c_Task_TaskHandle;
 extern Version_Information_Struct G_Version_Information;
@@ -124,9 +130,9 @@ uint16_t Create_Send_Pack(uint8_t* str)
 }
 
 /*
- * 连接Onenet
+ * 连接server
  */
-uint16_t Connect_OneNet(void)
+uint16_t Connect_Server(void)
 {
 	BaseType_t err = 1;
 	uint32_t NotifyValue;
@@ -173,4 +179,32 @@ uint8_t Get_Sim800C_Signal(void)
 //	n = atoi(str+5);
 	//printf("str+5 = [%s],n = %d\r\n",str+5,n);
 	return n;
+}
+uint8_t MQTT_Connect(Aliot_TypeDef *	p)
+{
+	int len = 0;
+	MQTTPacket_connectData ConnectData = MQTTPacket_connectData_initializer;
+	
+	ConnectData.clientID.cstring = p->IOT_ClientID;
+	ConnectData.keepAliveInterval = 360;
+	ConnectData.cleansession = 1;
+	ConnectData.username.cstring = p->IOT_UserName;
+	ConnectData.password.cstring = p->IOT_Guider_Sign;
+	
+	len = MQTTSerialize_connect(IOT_Buf, Size, &ConnectData);
+	
+	if (transport_sendPacketBuffer(IOT_Buf,len,ACK))
+	{		
+		//p_GPRS->DOWN_LEN = 0x0000;
+		if (MQTTPacket_read(IOT_Buf, Size, transport_getdata) == CONNACK)
+		{
+			unsigned char sessionPresent, connack_rc;
+			if (MQTTDeserialize_connack(&sessionPresent, &connack_rc, IOT_Buf, Size) != 1 || connack_rc != 0)
+				return ERROR;
+			
+			else return SUCCESS;
+		}
+		else return ERROR;
+	}
+	else return ERROR;
 }

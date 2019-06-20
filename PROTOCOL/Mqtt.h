@@ -24,7 +24,27 @@ typedef struct{
 	uint16_t	UserPasswordLen;
 	uint8_t		UserPassword[64];		//api-key
 }Connect_Pack;
-
+typedef struct
+{
+	char IOT_ProductKey[32];
+	char IOT_DeviceName[32];
+	char IOT_DeviceID[64];
+	char IOT_DeviceSecret[64];
+	
+	char IOT_Host[64];
+	char IOT_Port[8];
+	
+	char IOT_Content[128];
+	
+	char IOT_ClientID[128];
+	char IOT_UserName[64];
+	char IOT_Guider_Sign[64];
+}Aliot_TypeDef;
+typedef enum
+{
+	NOACK = 0,
+	ACK,
+} MQTT_ACK;
 //typedef struct{
 //	uint8_t	Pack_type; 		// MQTT类型=3  DupFlag=0 QosLevel=0 Retain=0
 //	uint8_t RemainedLength;	//remainedLength=包长度，注意【不计算这一位和前一位】
@@ -59,7 +79,7 @@ extern float g_rh;
 extern uint8_t pData[];
 extern float temp;
 extern Onenet_Pack G_Send_Pack;
-uint16_t Connect_OneNet(void);
+uint16_t Connect_Server(void);
 
 uint8_t Get_Sim800C_Signal(void);
 uint16_t Create_Send_Pack(uint8_t* str);

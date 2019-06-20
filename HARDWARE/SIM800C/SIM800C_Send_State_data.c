@@ -21,22 +21,22 @@ uint8_t g_init_send = ERROR;
 void Start_Send_State_data_Task(void const * argument)
 {
 	xSemaphoreTake(Sim800c_Semaphore,portMAX_DELAY);//获取互斥信号量
-	Connect_OneNet();	//SIM800C重新上电后需要连接ONENET的MQTT服务器
+	Connect_Server();	//SIM800C重新上电后需要连接服务器的MQTT服务
 	xSemaphoreGive(Sim800c_Semaphore);
 	//连接上开机连接上ONENET之后要发送设备信息Version_Information
-	if(g_init_send==ERROR)//确定只有第一次开机时候发送设备信息
-	{
-		xSemaphoreTake(Sim800c_Semaphore,portMAX_DELAY);//获取互斥信号量
-		g_init_send = Send_Version_Information();//发送设备信息
-		xSemaphoreGive(Sim800c_Semaphore);
-	}
-	printf("CONNECT_onenet Send_Version_Information\r\n");
-	xSemaphoreGive(Sim800c_Semaphore);
+//	if(g_init_send==ERROR)//确定只有第一次开机时候发送设备信息
+//	{
+//		xSemaphoreTake(Sim800c_Semaphore,portMAX_DELAY);//获取互斥信号量
+//		g_init_send = Send_Version_Information();//发送设备信息
+//		xSemaphoreGive(Sim800c_Semaphore);
+//	}
+//	printf("CONNECT_onenet Send_Version_Information\r\n");
+//	xSemaphoreGive(Sim800c_Semaphore);
 	while(1)
 	{
-		xSemaphoreTake(Sim800c_Semaphore,portMAX_DELAY);//获取互斥信号量
-		Send_Temp_Humi_F_R();
-		xSemaphoreGive(Sim800c_Semaphore);
+//		xSemaphoreTake(Sim800c_Semaphore,portMAX_DELAY);//获取互斥信号量
+//		Send_Temp_Humi_F_R();
+//		xSemaphoreGive(Sim800c_Semaphore);
 		osDelay(5000);
 	}
 }
