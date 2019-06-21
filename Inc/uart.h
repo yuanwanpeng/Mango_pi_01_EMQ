@@ -21,7 +21,6 @@
 extern SemaphoreHandle_t xSemaphore;
 
 void Send_To_Uart2_Str(int8_t* str,uint32_t len);
-
 char *itoa(char *string, int32_t value, int radix);
 
 

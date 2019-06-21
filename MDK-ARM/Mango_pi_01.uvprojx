@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xE</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Middlewares/Third_Party/FatFs/src;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Drivers/CMSIS/Include;..\HARDWARE\BUTTON;..\HARDWARE\BUZZER;..\HARDWARE\LCD12864;..\HARDWARE\DELAY;..\HARDWARE\RELAY;..\HARDWARE\24C0X;..\HARDWARE\HUMI;..\HARDWARE\LED;..\HARDWARE\SIM800C;..\HARDWARE\ESP8266;..\HARDWARE\AM2320;..\HARDWARE\BOARD_INFO;..\PROTOCOL;..\CJSON;..\PROTOCOL\MQTTPacket</IncludePath>
+              <IncludePath>../Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Middlewares/Third_Party/FatFs/src;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Drivers/CMSIS/Include;..\HARDWARE\BUTTON;..\HARDWARE\BUZZER;..\HARDWARE\LCD12864;..\HARDWARE\DELAY;..\HARDWARE\RELAY;..\HARDWARE\24C0X;..\HARDWARE\HUMI;..\HARDWARE\LED;..\HARDWARE\SIM800C;..\HARDWARE\ESP8266;..\HARDWARE\AM2320;..\HARDWARE\BOARD_INFO;..\PROTOCOL;..\CJSON;..\PROTOCOL\MQTTPacket;..\ALIOT</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -836,6 +836,16 @@
               <FileName>cJSON.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\CJSON\cJSON.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>ALIOT</GroupName>
+          <Files>
+            <File>
+              <FileName>ALIOT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\ALIOT\ALIOT.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -6,6 +6,6 @@ mango_pi_01\mqttconnectclient.o: ..\PROTOCOL\MQTTPacket\MQTTSubscribe.h
 mango_pi_01\mqttconnectclient.o: ..\PROTOCOL\MQTTPacket\MQTTUnsubscribe.h
 mango_pi_01\mqttconnectclient.o: ..\PROTOCOL\MQTTPacket\MQTTFormat.h
 mango_pi_01\mqttconnectclient.o: ..\PROTOCOL\MQTTPacket\StackTrace.h
-mango_pi_01\mqttconnectclient.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+mango_pi_01\mqttconnectclient.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 mango_pi_01\mqttconnectclient.o: ..\PROTOCOL\MQTTPacket\MQTTPacket.h
-mango_pi_01\mqttconnectclient.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+mango_pi_01\mqttconnectclient.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

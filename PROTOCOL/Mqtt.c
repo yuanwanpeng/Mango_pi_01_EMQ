@@ -147,7 +147,7 @@ uint16_t Connect_Server(void)
 		Start_Reset_Sim800c_Task_TaskHandle = osThreadCreate(osThread(Reset_Sim800c_Task), NULL);
 		taskEXIT_CRITICAL();				//退出临界区
 	}
-	Pack_Len = init_OneNet_Pack();
+//	Pack_Len = init_OneNet_Pack();
 	Send_To_Uart2_Str((int8_t*)g_send_Onenet_buf,Pack_Len);
 	//需要等待返回数据返回一个SEND OK
 	err = xTaskNotifyWait((uint32_t)0x00,
@@ -180,6 +180,53 @@ uint8_t Get_Sim800C_Signal(void)
 	//printf("str+5 = [%s],n = %d\r\n",str+5,n);
 	return n;
 }
+void Aliot_Make_Dat(Aliot_TypeDef *	p, uint32_t time)
+{
+	char a[16] = "\0";
+	memset (p, 0 ,sizeof(Aliot_TypeDef));
+	
+	strcpy(p->IOT_ProductKey,	ProductKey);
+	
+	strcpy(p->IOT_DeviceName,	p_GPRS->IMEI);
+	
+	strcpy(p->IOT_DeviceID,		ProductKey);
+	strcat(p->IOT_DeviceID,		".");
+	strcat(p->IOT_DeviceID,		p_GPRS->IMEI);
+	
+	//strcpy(p->IOT_DeviceSecret, DeviceSecret);
+	strcpy(p->IOT_DeviceSecret, p_GPRS->DS);
+	
+	strcpy(p->IOT_Host,				ProductKey);
+	strcat(p->IOT_Host,				".");
+	strcat(p->IOT_Host,				Host);
+	
+	strcpy(p->IOT_Port,				Port);
+	
+	strcpy(p->IOT_ClientID,		p->IOT_DeviceID);
+	strcat(p->IOT_ClientID,		"|");
+	strcat(p->IOT_ClientID,		SecureMode);
+	strcat(p->IOT_ClientID,		",");
+	strcat(p->IOT_ClientID,		Timestamp);
+	strcat(p->IOT_ClientID,		"=");
+	strcat(p->IOT_ClientID,		itoa(a,time,10));	
+	//strcat(p->IOT_ClientID,		"2524608000000");
+	strcat(p->IOT_ClientID,		",");
+	strcat(p->IOT_ClientID,		SignMethod);
+	strcat(p->IOT_ClientID,		",");
+	strcat(p->IOT_ClientID,		Gw);
+	strcat(p->IOT_ClientID,		"|");
+	
+	strcpy(p->IOT_UserName,		p_GPRS->IMEI);
+	strcat(p->IOT_UserName,		"&");
+	strcat(p->IOT_UserName,		ProductKey);
+								
+	sprintf(p->IOT_Content,	"clientId%s" "deviceName%s" "productKey%s" "timestamp%s",p->IOT_DeviceID, p->IOT_DeviceName,p->IOT_ProductKey,a);
+													 
+	utils_hmac_sha1(p->IOT_Content, p->IOT_DeviceSecret, p->IOT_Guider_Sign);
+	
+}
+
+
 uint8_t MQTT_Connect(Aliot_TypeDef *	p)
 {
 	int len = 0;
@@ -208,3 +255,5 @@ uint8_t MQTT_Connect(Aliot_TypeDef *	p)
 	}
 	else return ERROR;
 }
+
+

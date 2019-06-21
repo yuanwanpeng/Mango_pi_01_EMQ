@@ -19,42 +19,15 @@
 #include <string.h>
 #include <stdlib.h>
 #include "transport.h"
+#include "stdint.h"
 
-
-int transport_sendPacketBuffer(int sock, unsigned char* buf, int buflen)
+int transport_sendPacketBuffer(unsigned char* buf, int buflen, unsigned char ack)
 {
 //	int rc = 0;
 //	rc = write(sock, buf, buflen);
 //	return rc;
-	if (GPRS_ZIPSEND(buf,buflen))
-	{
-		if (ack == ACK)
-		{
-			if (GPRS_Process_Dat(p_GPRS) == DAT_VALID )
-			{
-				p_GPRS->DOWN_LEN = 0;
-				return SUCCESS;
-			}
-			else
-			{
-				GPRS_Clear_Dat(p_GPRS);
-				p_GPRS->GPRS_BUF->RX_Time = Start_Delay;
-				while (p_GPRS->GPRS_BUF->RX_Time < GPRS_MAX_Delay)
-				{
-					if (p_GPRS->GPRS_BUF->RX_Flag == SET)
-						break;
-				}
-				if (GPRS_Process_Dat(p_GPRS) == DAT_VALID )
-				{
-					p_GPRS->DOWN_LEN = 0;
-					return SUCCESS;
-				}
-				else return ERROR;
-			}
-		}
-		else return SUCCESS;
-	}
-	else return ERROR;
+	Send_To_Uart2_Str((int8_t*)buf,buflen);
+	return buflen;
 }
 
 
@@ -77,6 +50,13 @@ int transport_getdata(unsigned char* buf, int count)
 //		delay_ms(10);
 //	}
 //	return count;
+	
+	
+	memcpy(buf, (void*)&p_GPRS->DOWN_BUF[p_GPRS->DOWN_LEN], count);//(void*)??why?
+	p_GPRS->DOWN_LEN += count;
+	return count;
+	
+	
 }
 
 int transport_getdatanb(void *sck, unsigned char* buf, int count)
